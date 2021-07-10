@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CodingChallenge2
 {
@@ -10,24 +11,33 @@ namespace CodingChallenge2
         }
         public int NumberOfCharactersEscaped(string s)
         {
+            string[] strList = s.Split('#');
+            var poundCount = s.Count(x => x == '#');
             int count = 0;
-            bool escape = false; // flag to turn on/off escape
-
-            for (int i = 0; i < s.Length; i++)
+            if (poundCount < 2)
             {
-                char c = s[i];
-                if (c == '#')
-                {
-                    escape = !escape;
-                }
-
-                if (escape && i > 0 && s[i - 1] == '!')
-                {
-                    count = char.IsLower(c) ? count + 1 : count;
-                }
-
+                return count;
             }
+
+            for (int i = 1; i < strList.Length - 1; i++)
+            {
+                var str = strList[i];
+                if (str.Length < 2 || i%2 ==0)
+                {
+                    continue;
+                }
+                for(int j=1; j<str.Length; j++)
+                {
+                    if(str[j-1] == '!')
+                    {
+                        count = char.IsLower(str[j]) ? count + 1 : count;
+                    }
+                }
+            }
+            
+            
             return count;
+
         }
 
         public int EntryTime(string s, string keypad)

@@ -52,7 +52,10 @@ namespace MSTest
                 return new[]
                 {
                     new object[] { "##!r#po#", 0},
-                    new object[] { "#ab!c#de!f", 1}
+                    new object[] { "#ab!c#de!f", 1},
+                    new object[] { "#a!b#c", 1},
+                    new object[] { "#!b", 0},
+                    new object[] { "#!b#ll##!b#!b!2!!c#", 3}
                 };
             }
         }
@@ -63,7 +66,9 @@ namespace MSTest
             {
                 return new[]
                 {
-                    new object[] { "423692", "923857614", 8}
+                    new object[] { "423692", "923857614", 8 },
+                    new object[] { "5111", "752961348", 1 },
+                    new object[] { "91566165", "639485712", 11}
                 };
             }
         }
@@ -74,7 +79,9 @@ namespace MSTest
             {
                 return new[]
                 {
-                    new object[] {  "7,5,3,4,6,1,7,2,4", 7, "8,7,-1,-1,-1,-1,-1,-1,-1"}
+                    new object[] { "7,5,3,4,6,1,7,2,4", 7, "8,7,-1,-1,-1,-1,-1,-1,-1" },
+                    new object[] { "1,1,2,2,3,1,3,2", 3, "5,4,4,3,4,3,-1,-1" },
+                    new object[] { "1,2,3,2,1", 3, "3,4,3,-1,-1" }
                 };
             }
         }
