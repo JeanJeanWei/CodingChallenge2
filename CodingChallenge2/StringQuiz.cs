@@ -149,5 +149,45 @@ namespace CodingChallenge2
             return tSize;
 
         }
+
+        public int FirstUniqChar(string s)
+        {
+            var map = new Dictionary<char, int>();
+            char[] cArr = s.ToCharArray();
+            for (int i = 0; i < cArr.Length; i++)
+            {
+                if (map.ContainsKey(cArr[i]))
+                {
+                    map[cArr[i]] += 1;
+                }
+                else
+                {
+                    map[cArr[i]] = 1;
+                }
+            }
+            var u = map.Where(x => x.Value == 1).Select(x => x.Key).ToList();
+            if (u.Count == 0)
+            {
+                return -1;
+            }
+            int pos = 0;
+            bool found = false;
+            for (int i = 0; i < cArr.Length; i++)
+            {
+                var c = cArr[i];
+                for (int j = 0; j < u.Count; j++)
+                {
+                    if (c == u[j])
+                    {
+                        pos = i;
+                        found = true;
+                        break;
+                    }
+                }
+                if (found)
+                    break;
+            }
+            return pos;
+        }
     }
 }
