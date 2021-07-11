@@ -45,6 +45,15 @@ namespace MSTest
        
         }
 
+        [DataTestMethod]
+        [DynamicData(nameof(Data3), DynamicDataSourceType.Property)]
+        public void TopFreqChar_Test(string s, string expected)
+        {
+            var sq = new StringQuiz();
+            var result = sq.TopFrequenceChar(s);
+            Assert.AreEqual(result, expected);
+        }
+
         public static IEnumerable<object[]> Data
         {
             get
@@ -82,6 +91,20 @@ namespace MSTest
                     new object[] { "7,5,3,4,6,1,7,2,4", 7, "8,7,-1,-1,-1,-1,-1,-1,-1" },
                     new object[] { "1,1,2,2,3,1,3,2", 3, "5,4,4,3,4,3,-1,-1" },
                     new object[] { "1,2,3,2,1", 3, "3,4,3,-1,-1" }
+                };
+            }
+        }
+
+        public static IEnumerable<object[]> Data3
+        {
+            get
+            {
+                return new[]
+                {
+                    new object[] { "aaabbbcccdddeee", "a" },
+                    new object[] { "a2haiii", "i" },
+                    new object[] { "1", "1" },
+                    new object[] { "bbbaaaacccaccdddadada", "a"}
                 };
             }
         }

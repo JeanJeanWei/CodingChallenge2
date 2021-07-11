@@ -189,5 +189,40 @@ namespace CodingChallenge2
             }
             return pos;
         }
+
+        public string TopFrequenceChar(string s)
+        {
+            if (s == null) return null;
+            if (s.Length == 0) return "";
+            if (s.Length == 1) return s[0].ToString();
+
+            var map = new Dictionary<char, int>();
+            for(int i=0; i<s.Length; i++)
+            {
+                var c = s[i];
+                if(map.ContainsKey(c))
+                {
+                    map[c] += 1;
+                }
+                else
+                {
+                    map[c] = 1;
+                }
+            }
+            var max = map.Max(x=>x.Value);
+            var maxList = map.Where(x => x.Value == max).Select(x => x.Key).ToList();
+
+            var result = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (maxList.Contains(s[i]))
+                {
+                   result = s[i].ToString();
+                   break;
+                }
+                
+            }
+            return result;
+        }
     }
 }
